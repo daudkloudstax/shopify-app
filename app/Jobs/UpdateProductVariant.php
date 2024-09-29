@@ -38,16 +38,10 @@ class UpdateProductVariant implements ShouldQueue
     {
         //
         $client = $this->initializeClient();
-        $variants = [];
-        foreach($this->data['variants'] as $variant){
-            $variant['options'] = [$variant['title']];
-            unset($variant['title']);
-            $variants[] = $variant;
-        }
-        
+        unset( $this->data['variants']['optionValues']);
         $variables = [
-            "productId" => $this->data['productId'],
-            "variants" => $variants
+            "productId" => $this->data['shopify_product_id'],
+            "variants" => $this->data['variants']
         ];
         
         $query = <<<'QUERY'

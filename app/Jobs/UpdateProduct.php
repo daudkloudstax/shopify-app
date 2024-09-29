@@ -42,6 +42,7 @@ class UpdateProduct implements ShouldQueue
         $postedData = $productData['postedData'];
         $productId = $productData['id'];
         unset($productData['postedData']);
+        unset($productData['options']);
         $variables = [
             "input" => $productData,
             "media" => []
